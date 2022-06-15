@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm';
 import Filter from './Filter';
+import ContactList from './ContactList';
+
 export class App extends Component {
   state = {
     contacts: [
@@ -12,15 +14,20 @@ export class App extends Component {
     ],
     filter: '',
   };
-  handleSubmit = contact => {
+  onSubmit = contact => {
     const addContacts = {
       id: nanoid(),
       name: contact.name,
       number: contact.number,
     };
-    this.setState(({ contacts }) => ({
-      contacts: [...contacts, addContacts],
-    }));
+
+    this.state.contacts.some(
+      contact => contact.name.toUpperCase() === addContacts.name.toUpperCase()
+    )
+      ? alert(`${contact.name} is already in contacts`)
+      : this.setState(({ contacts }) => ({
+          contacts: [...contacts, addContacts],
+        }));
   };
   inputFilter = e => {
     this.setState({ filter: e.target.value });
@@ -30,32 +37,29 @@ export class App extends Component {
       contact.name.toUpperCase().includes(this.state.filter.toUpperCase())
     );
   };
-  deleteContact(id) {
+  deleteContact = id => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(e => e.id !== id),
     }));
-  }
+  };
   render() {
+    const showContact = this.filteredContact();
     return (
-      <div>
-        <ContactForm
-          onSubmit={this.handleSubmit}
-          value={this.state.value}
-        ></ContactForm>
-        <h2>contacts</h2>
+      <div
+        style={{
+          display: 'block',
+          width: '450px',
+          margin: '0 auto',
+        }}
+      >
+        <h1>Phonebook</h1>
+        <ContactForm onSubmit={this.onSubmit}></ContactForm>
+        <h2>Contacts</h2>
         <Filter value={this.state.filter} onChange={this.inputFilter}></Filter>
-        <ul>
-          {this.filteredContact().map(({ id, name, number }) => {
-            return (
-              <li key={id}>
-                {name}: {number}
-                <button type="button" onClick={() => this.deleteContact(id)}>
-                  delete
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+        <ContactList
+          showContact={showContact}
+          deleteContact={this.deleteContact}
+        ></ContactList>
       </div>
     );
   }

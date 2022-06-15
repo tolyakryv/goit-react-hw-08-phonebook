@@ -1,0 +1,12 @@
+.btn {
+  cursor: pointer;
+  padding: 1px 4px;
+  margin-left: 15px;
+}
+.btn:hover,
+.btn:focus {
+  background-color: aqua;
+}
+.list {
+  margin-top: 5px;
+}

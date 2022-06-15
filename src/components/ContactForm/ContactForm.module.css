@@ -1,0 +1,19 @@
+.container {
+  display: block;
+  border: 1px solid darkslateblue;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.input {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.btn {
+  cursor: pointer;
+}
+.btn:hover,
+.btn:focus {
+  background-color: aqua;
+}

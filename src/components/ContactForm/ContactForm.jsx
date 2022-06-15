@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import s from './ContactForm.module.css';
 class ContactForm extends Component {
   state = {
     name: '',
     number: '',
   };
-  handleSubmit = e => {
+  onSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state);
   };
@@ -13,11 +15,11 @@ class ContactForm extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h1>phonebook</h1>
+      <form className={s.container} onSubmit={this.onSubmit}>
         <label>
           Name
           <input
+            className={s.input}
             value={this.state.name}
             type="text"
             name="name"
@@ -30,6 +32,7 @@ class ContactForm extends Component {
         <label>
           Number
           <input
+            className={s.input}
             value={this.state.number}
             type="tel"
             name="number"
@@ -39,9 +42,14 @@ class ContactForm extends Component {
             onChange={this.changeInput}
           />
         </label>
-        <button type="submit">add contact</button>
+        <button className={s.btn} type="submit">
+          add contact
+        </button>
       </form>
     );
   }
 }
 export default ContactForm;
+ContactForm.propTypes = {
+  onSubmit: propTypes.func.isRequired,
+};
