@@ -13,7 +13,6 @@
 .btn {
   cursor: pointer;
 }
-.btn:hover,
-.btn:focus {
+.btn:active {
   background-color: aqua;
 }
