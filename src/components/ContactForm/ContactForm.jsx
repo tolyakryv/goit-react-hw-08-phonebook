@@ -9,6 +9,10 @@ class ContactForm extends Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state);
+    this.setState({
+      name: '',
+      number: '',
+    });
   };
   changeInput = e => {
     this.setState({ [e.target.name]: e.target.value });

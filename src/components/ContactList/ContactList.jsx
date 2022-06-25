@@ -20,5 +20,11 @@ const ContactList = ({ showContact, deleteContact }) => {
 export default ContactList;
 ContactList.propTypes = {
   deleteContact: propTypes.func.isRequired,
-  showContact: propTypes.array,
+  showContact: propTypes.arrayOf(
+    propTypes.exact({
+      id: propTypes.string.isRequired,
+      name: propTypes.string.isRequired,
+      number: propTypes.string.isRequired,
+    })
+  ),
 };
