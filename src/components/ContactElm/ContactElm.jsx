@@ -2,7 +2,7 @@ import propType from 'prop-types';
 import s from './ContactElm.module.css';
 const ContactElm = ({ id, name, number, deleteContact }) => {
   return (
-    <li className={s.list} key={id}>
+    <li className={s.list}>
       {name}: {number}
       <button className={s.btn} type="button" onClick={() => deleteContact(id)}>
         delete
