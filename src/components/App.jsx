@@ -17,6 +17,7 @@ const App = () => {
     if (contactsLocal) {
       setContacts(contactsLocal);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
