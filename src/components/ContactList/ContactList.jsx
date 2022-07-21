@@ -9,12 +9,7 @@ const ContactList = () => {
       contact.name.toUpperCase().includes(filter.toUpperCase())
     );
   };
-  console.log(showContact());
-  // => {
-  // return contacts.filter(contact =>
-  //   contact.name.toUpperCase().includes(filter.toUpperCase())
-  // );
-  // };
+
   return (
     <ul>
       {showContact().map(({ id, name, number }) => {
