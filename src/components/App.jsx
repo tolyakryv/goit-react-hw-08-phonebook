@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+
 import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
@@ -22,23 +22,23 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
-  const OnSubmitProp = ({ name, number }) => {
-    const addContacts = {
-      id: nanoid(),
-      name: name,
-      number: number,
-    };
+  // const OnSubmitProp = ({ name, number }) => {
+  //   const addContacts = {
+  //     id: nanoid(),
+  //     name: name,
+  //     number: number,
+  //   };
 
-    if (
-      contacts.some(
-        contact => contact.name.toUpperCase() === addContacts.name.toUpperCase()
-      )
-    ) {
-      alert(`${addContacts.name} is already in contacts`);
-      return;
-    }
-    setContacts([...contacts, addContacts]);
-  };
+  //   if (
+  //     contacts.some(
+  //       contact => contact.name.toUpperCase() === addContacts.name.toUpperCase()
+  //     )
+  //   ) {
+  //     alert(`${addContacts.name} is already in contacts`);
+  //     return;
+  //   }
+  //   setContacts([...contacts, addContacts]);
+  // };
   const inputFilter = e => {
     setFilter(e.target.value);
   };
@@ -60,7 +60,7 @@ const App = () => {
       }}
     >
       <h1>Phonebook</h1>
-      <ContactForm onSubmit={OnSubmitProp}></ContactForm>
+      <ContactForm></ContactForm>
       <h2>Contacts</h2>
       <Filter value={filter} onChange={inputFilter}></Filter>
       <ContactList

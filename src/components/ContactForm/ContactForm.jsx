@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
 import s from './ContactForm.module.css';
-export default function ContactForm({ onSubmit }) {
+import { useDispatch, useSelector } from 'react-redux';
+
+import addContacts from 'redux/contacts-action';
+export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(state => state.contacts.contactsList);
+  const dispatch = useDispatch();
+
+  console.log(contacts);
   const onSubmitForm = e => {
     e.preventDefault();
-    onSubmit({ name, number });
+    if (
+      contacts.some(
+        contact => contact.name.toUpperCase() === addContacts.name.toUpperCase()
+      )
+    ) {
+      alert(`${addContacts.name} is already in contacts`);
+      return;
+    }
+    dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
   };
