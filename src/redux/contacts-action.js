@@ -9,4 +9,6 @@ const addContacts = createAction('contact/add', ({ name, number }) => ({
     number,
   },
 }));
-export default addContacts;
+const filter = createAction('contact/filter');
+const actions = { addContacts, filter };
+export default actions;

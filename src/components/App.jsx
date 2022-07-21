@@ -42,11 +42,11 @@ const App = () => {
   const inputFilter = e => {
     setFilter(e.target.value);
   };
-  const showContact = () => {
-    return contacts.filter(contact =>
-      contact.name.toUpperCase().includes(filter.toUpperCase())
-    );
-  };
+  // const showContact = () => {
+  //   return contacts.filter(contact =>
+  //     contact.name.toUpperCase().includes(filter.toUpperCase())
+  //   );
+  // };
   const deleteContact = id => {
     const notContact = contacts.filter(e => e.id !== id);
     setContacts(notContact);
@@ -64,7 +64,7 @@ const App = () => {
       <h2>Contacts</h2>
       <Filter value={filter} onChange={inputFilter}></Filter>
       <ContactList
-        showContact={showContact()}
+        // showContact={showContact()}
         deleteContact={deleteContact}
       ></ContactList>
     </div>

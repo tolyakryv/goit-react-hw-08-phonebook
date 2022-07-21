@@ -3,11 +3,11 @@ import propTypes from 'prop-types';
 import s from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 
-import addContacts from 'redux/contacts-action';
+import actions from 'redux/contacts-action';
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(state => state.contacts.contactsList);
+  const contacts = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
 
   console.log(contacts);
@@ -15,13 +15,13 @@ export default function ContactForm() {
     e.preventDefault();
     if (
       contacts.some(
-        contact => contact.name.toUpperCase() === addContacts.name.toUpperCase()
+        contact => contact.name.toUpperCase() === name.toUpperCase()
       )
     ) {
-      alert(`${addContacts.name} is already in contacts`);
+      alert(`${name} is already in contacts`);
       return;
     }
-    dispatch(addContact({ name, number }));
+    dispatch(actions.addContacts({ name, number }));
     setName('');
     setNumber('');
   };
