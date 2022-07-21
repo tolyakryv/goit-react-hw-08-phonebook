@@ -1,5 +1,4 @@
 import { createAction } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
 import { nanoid } from 'nanoid';
 
 const addContacts = createAction('contact/add', ({ name, number }) => ({
@@ -9,6 +8,7 @@ const addContacts = createAction('contact/add', ({ name, number }) => ({
     number,
   },
 }));
-const filter = createAction('contact/filter');
-const actions = { addContacts, filter };
+const deleteContact = createAction('contact/delete');
+const filterContact = createAction('contact/filter');
+const actions = { addContacts, filterContact, deleteContact };
 export default actions;

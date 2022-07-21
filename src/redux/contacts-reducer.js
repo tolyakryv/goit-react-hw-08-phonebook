@@ -9,9 +9,11 @@ const defaultContact = [
 ];
 const items = createReducer(defaultContact, {
   [actions.addContacts]: (state, { payload }) => [...state, payload],
+  [actions.deleteContact]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 });
 const filter = createReducer('', {
-  [actions.filter]: (_, { payload }) => payload,
+  [actions.filterContact]: (_, { payload }) => payload,
 });
 const contactsReducer = combineReducers({ items, filter });
 export default contactsReducer;
