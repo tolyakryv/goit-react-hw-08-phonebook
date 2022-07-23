@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import actions from 'redux/contacts-action';
 const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(state => state.contacts.filter);
+  const filter = useSelector(state => state.filter);
+  console.log(filter);
   return (
     <label>
       Find contact by name

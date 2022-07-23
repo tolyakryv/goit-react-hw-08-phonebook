@@ -7,7 +7,7 @@ import actions from 'redux/contacts-action';
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(state => state.contacts.items);
+  const contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
 
   const onSubmitForm = e => {
@@ -37,7 +37,7 @@ export default function ContactForm() {
     }
   };
   return (
-    <form className={s.container} onSubmit={onSubmitForm}>
+    <form autoComplete="off" className={s.container} onSubmit={onSubmitForm}>
       <label>
         Name
         <input
