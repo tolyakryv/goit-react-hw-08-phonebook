@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
 
 import s from './ContactForm.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-
-import actions from 'redux/contacts-action';
+// import { useDispatch, useSelector } from 'react-redux';
+import {
+  useAddContactsMutation,
+  useGetAllContactsQuery,
+} from 'services/contactsAPI';
+// import actions from 'redux/contacts-action';
 export default function ContactForm() {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const contacts = useSelector(state => state.contacts);
-  const dispatch = useDispatch();
-
+  const [phone, setPhone] = useState('');
+  const { data } = useGetAllContactsQuery();
+  const [addContacts] = useAddContactsMutation();
+  // const dispatch = useDispatPhone
   const onSubmitForm = e => {
     e.preventDefault();
     if (
-      contacts.some(
-        contact => contact.name.toUpperCase() === name.toUpperCase()
-      )
+      data.some(contact => contact.name.toUpperCase() === name.toUpperCase())
     ) {
       alert(`${name} is already in contacts`);
       return;
     }
-    dispatch(actions.addContacts({ name, number }));
+    addContacts({ name, phone });
     setName('');
-    setNumber('');
+    setPhone('');
   };
   const changeInput = e => {
     switch (e.target.name) {
@@ -30,7 +31,7 @@ export default function ContactForm() {
         setName(e.target.value);
         break;
       case 'number':
-        setNumber(e.target.value);
+        setPhone(e.target.value);
         break;
       default:
         return;
@@ -55,7 +56,7 @@ export default function ContactForm() {
         Number
         <input
           className={s.input}
-          value={number}
+          value={phone}
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
