@@ -6,12 +6,12 @@ import { useDeleteContactsMutation } from 'services/contactsAPI';
 
 const ContactElm = ({ id, name, number }) => {
   // const dispatch = useDispatch();
-  const [deleteContact, { isLoading }] = useDeleteContactsMutation();
+  const [deleteContact] = useDeleteContactsMutation();
   return (
     <li className={s.list}>
       {name}: {number}
       <button className={s.btn} type="button" onClick={() => deleteContact(id)}>
-        {isLoading ? ' ' : 'delete'}
+        delete
       </button>
     </li>
   );
