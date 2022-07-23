@@ -1,8 +1,8 @@
 {
-  "name": "react-homework-07",
+  "name": "react-homework-08",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tolyakryv.github.io/goit-react-hw-07-phonebook/",
+  "homepage": "https://tolyakryv.github.io/goit-react-hw-08-phonebook/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.16.3",
