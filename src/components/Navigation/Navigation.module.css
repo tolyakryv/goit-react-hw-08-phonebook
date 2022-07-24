@@ -1,0 +1,13 @@
+.container {
+  height: 30px;
+  width: 100%;
+  padding: 10px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.link {
+  margin: 10px;
+}
+.nav {
+  margin-bottom: 5px;
+}

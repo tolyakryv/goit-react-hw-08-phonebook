@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Button from 'react-bootstrap/Button';
 import s from './ContactForm.module.css';
 // import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -38,11 +38,15 @@ export default function ContactForm() {
     }
   };
   return (
-    <form autoComplete="off" className={s.container} onSubmit={onSubmitForm}>
-      <label>
+    <form
+      autoComplete="off"
+      className={s.container_contact}
+      onSubmit={onSubmitForm}
+    >
+      <label className={s.label_contact}>
         Name
         <input
-          className={s.input}
+          className={s.input_contact}
           value={name}
           type="text"
           name="name"
@@ -52,10 +56,10 @@ export default function ContactForm() {
           onChange={changeInput}
         />
       </label>
-      <label>
+      <label className={s.label_contact}>
         Number
         <input
-          className={s.input}
+          className={s.input_contact}
           value={phone}
           type="tel"
           name="number"
@@ -65,9 +69,13 @@ export default function ContactForm() {
           onChange={changeInput}
         />
       </label>
-      <button className={s.btn} type="submit">
+      <Button className={s.btn_contact} type="submit">
+        {' '}
         add contact
-      </button>
+      </Button>
+      {/* <button className={s.btn_contact} type="submit">
+        add contact
+      </button> */}
     </form>
   );
 }

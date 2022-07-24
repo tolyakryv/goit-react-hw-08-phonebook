@@ -1,18 +1,22 @@
-.container {
+.container_contact {
   display: block;
   border: 1px solid darkslateblue;
   padding: 10px;
   margin-top: 10px;
 }
 
-.input {
+.label_contact {
+  display: block;
+}
+.input_contact {
   display: block;
   margin-top: 5px;
   margin-bottom: 5px;
+  width: 95%;
 }
-.btn {
+.btn_contact {
   cursor: pointer;
 }
-.btn:active {
+.btn_contact:active {
   background-color: aqua;
 }

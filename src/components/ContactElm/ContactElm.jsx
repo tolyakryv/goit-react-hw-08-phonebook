@@ -1,3 +1,4 @@
+import Button from 'react-bootstrap/Button';
 // import { useDispatch } from 'react-redux';
 import propType from 'prop-types';
 import s from './ContactElm.module.css';
@@ -10,9 +11,17 @@ const ContactElm = ({ id, name, number }) => {
   return (
     <li className={s.list}>
       {name}: {number}
-      <button className={s.btn} type="button" onClick={() => deleteContact(id)}>
+      {/* <button className={s.btn} type="button" onClick={() => deleteContact(id)}>
         delete
-      </button>
+      </button> */}
+      <Button
+        className={s.btn}
+        type="button"
+        onClick={() => deleteContact(id)}
+        variant="danger"
+      >
+        delete
+      </Button>
     </li>
   );
 };
