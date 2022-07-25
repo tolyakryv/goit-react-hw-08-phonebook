@@ -4,17 +4,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import { useGetAllContactsQuery } from 'services/contactsAPI';
 // import ContactForm from './ContactForm';
 // import Filter from './Filter';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 // import ContactList from './ContactList';
 import PublicRoute from './PublicRoute/PublicRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
-import Registration from './Registration';
-import AuthForm from './AuthForm';
 import NavigationBar from './NavigationBar';
 import AuthSelector from 'redux/auth-selector';
 import operation from 'redux/auth-operation';
 import Container from './Container';
 import ContactPage from 'pages/ContactPage';
+import Registration from './Registration';
+import AuthForm from './AuthForm';
+// const ContactPage = lazy(() => import('pages/ContactPage'));
+// const Registration = lazy(() => import('./Registration'));
+// const AuthForm = lazy(() => import('./AuthForm'));
 const App = () => {
   const dispatch = useDispatch();
 
@@ -28,19 +31,33 @@ const App = () => {
     <Container>
       <NavigationBar></NavigationBar>
       <Routes>
-        <Route path="/" element={<ContactPage />} />
-        <Route path="/register" element={<Registration />} />
-        <Route path="/login" element={<AuthForm />} />
-        <Route path="/contacts" element={<ContactPage />} />
+        <Route path="/" element={<PublicRoute />}>
+          <Route path="/" element={<Navigate replace to="/login" />} />
+          <Route path="/login" element={<AuthForm />} />
+          <Route path="/register" element={<Registration />} />
+        </Route>
+        {/* -------------------------- */}
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="/" element={<Navigate replace to="/contacts" />} />
+          <Route path="/contacts" element={<ContactPage />} />
+        </Route>
+
+        <Route path="*" element={<Navigate replace to="/" />} />
+        {/* <Route path="/register" element={<Registration />} />
+        <Route path="/login" element={<AuthForm />} /> */}
       </Routes>
+      ;
     </Container>
   );
 };
 export default App;
 
+// <AuthForm></AuthForm>
 // <Registration></Registration>
-//       <AuthForm></AuthForm>
-
+// <ContactPage></ContactPage>
+// /----------------------
+// <Registration></Registration>
+// <AuthForm></AuthForm>
 // <h1>Phonebook</h1>
 // <ContactForm></ContactForm>
 // <h2>Contacts</h2>

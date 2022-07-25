@@ -10,7 +10,7 @@ const NavigationBar = () => {
         <Container>
           {/* <Navbar.Brand href="#home">Phonebook</Navbar.Brand> */}
           <Nav className="me-auto">
-            <NavLink to="/">Phonebook</NavLink>
+            {/* <NavLink to="/">Phonebook</NavLink> */}
             <NavLink to="/contacts">Contacts</NavLink>
             {/* <NavLink to="/register" exact>
               Registration

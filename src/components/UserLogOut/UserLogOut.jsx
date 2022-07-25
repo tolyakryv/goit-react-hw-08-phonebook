@@ -8,8 +8,8 @@ const UserLogOut = () => {
         <Nav className="me-auto">
           {/* <Nav.Link href="#reg">Registration</Nav.Link>
           <Nav.Link href="#auth">Authentication</Nav.Link> */}
-          <NavLink to="/register">Registration</NavLink>
           <NavLink to="/login">Log In</NavLink>
+          <NavLink to="/register">Registration</NavLink>
         </Nav>
       </Container>
     </>

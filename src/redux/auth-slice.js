@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import AuthOperation from './auth-operation';
+import operation from './auth-operation';
 const initialState = {
   user: { name: null, email: null },
   token: null,
@@ -10,28 +10,32 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [AuthOperation.register.fulfilled](state, action) {
+    [operation.register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [AuthOperation.logIn.fulfilled](state, action) {
+    [operation.logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [AuthOperation.logOut.fulfilled](state, _) {
+    [operation.logOut.fulfilled](state, _) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
   },
-  [AuthOperation.fetchCurrentUser.pending](state, action) {
+  [operation.fetchCurrentUser.pending](state, action) {
     state.isRefreshCurrentUser = true;
   },
-  [AuthOperation.fetchCurrentUser.fulfilled](state, action) {
+  [operation.fetchCurrentUser.fulfilled](state, { action }) {
     state.user = action.payload;
     state.isLoggedIn = true;
+    state.isRefreshCurrentUser = false;
+  },
+  [operation.fetchCurrentUser.rejected](state, action) {
+    // state.user = action.payload.user;
     state.isRefreshCurrentUser = false;
   },
 });
