@@ -25,18 +25,17 @@ const authSlice = createSlice({
       state.token = null;
       state.isLoggedIn = false;
     },
+    [operation.fetchCurrentUser.pending](state, _) {
+      state.isRefreshCurrentUser = true;
+    },
+    [operation.fetchCurrentUser.fulfilled](state, action) {
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.isRefreshCurrentUser = false;
+    },
+    [operation.fetchCurrentUser.rejected](state, _) {
+      state.isRefreshCurrentUser = false;
+    },
   },
-  // [operation.fetchCurrentUser.pending](state, action) {
-  //   state.isRefreshCurrentUser = true;
-  // },
-  [operation.fetchCurrentUser.fulfilled](state, action) {
-    state.user = action.payload;
-    state.isLoggedIn = true;
-    // state.isRefreshCurrentUser = false;
-  },
-  // [operation.fetchCurrentUser.rejected](state, action) {
-  //   state.user = action.payload.user;
-  //   state.isRefreshCurrentUser = false;
-  // },
 });
 export default authSlice.reducer;

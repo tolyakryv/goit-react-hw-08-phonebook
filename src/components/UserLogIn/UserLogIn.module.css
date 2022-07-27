@@ -1,12 +1,12 @@
 .name {
+  display: flex;
+  align-items: center;
   color: bisque;
+  margin-right: 8px;
 }
-/* .container {
-  height: 30px;
-  width: 100%;
-  padding: 10px;
-  margin-left: 20px;
-  margin-top: 10px;
+.container {
+  display: flex;
+  height: 38px;
 }
 
 .link {
@@ -15,4 +15,8 @@
 
 .nav {
   margin-bottom: 5px;
-} */
+}
+.btn {
+  height: 38px;
+  margin-left: 10px;
+}

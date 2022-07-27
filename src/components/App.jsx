@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { useGetAllContactsQuery } from 'services/contactsAPI';
-// import ContactForm from './ContactForm';
-// import Filter from './Filter';
 import { Routes, Route, Navigate } from 'react-router-dom';
-// import ContactList from './ContactList';
 import PublicRoute from './PublicRoute/PublicRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import NavigationBar from './NavigationBar';
@@ -15,9 +11,8 @@ import Container from './Container';
 import ContactPage from 'pages/ContactPage';
 import Registration from './Registration';
 import AuthForm from './AuthForm';
-// const ContactPage = lazy(() => import('pages/ContactPage'));
-// const Registration = lazy(() => import('./Registration'));
-// const AuthForm = lazy(() => import('./AuthForm'));
+import { Circles } from 'react-loader-spinner';
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -25,41 +20,34 @@ const App = () => {
     dispatch(operation.fetchCurrentUser());
   }, [dispatch]);
 
-  const logged = AuthSelector.getIsLoggedIn;
-  console.log(logged);
+  const refreshUser = useSelector(AuthSelector.getIsRefreshCurrentUser);
+
   return (
     <Container>
       <NavigationBar></NavigationBar>
-      <Routes>
-        <Route path="/" element={<PublicRoute />}>
-          <Route path="/" element={<Navigate replace to="/login" />} />
-          <Route path="/login" element={<AuthForm />} />
-          <Route path="/register" element={<Registration />} />
-        </Route>
-        {/* -------------------------- */}
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/" element={<Navigate replace to="/contacts" />} />
-          <Route path="/contacts" element={<ContactPage />} />
-        </Route>
+      {refreshUser ? (
+        <div style={{ marginLeft: '40%', marginRight: 'auto' }}>
+          <Circles color="#00BFFF" height={80} width={80} />
+        </div>
+      ) : (
+        <>
+          <Routes>
+            <Route path="/" element={<PublicRoute />}>
+              <Route path="/" element={<Navigate replace to="/login" />} />
+              <Route path="/login" element={<AuthForm />} />
+              <Route path="/register" element={<Registration />} />
+            </Route>
+            {/* -------------------------- */}
+            <Route path="/" element={<PrivateRoute />}>
+              <Route path="/" element={<Navigate replace to="/contacts" />} />
+              <Route path="/contacts" element={<ContactPage />} />
+            </Route>
 
-        <Route path="*" element={<Navigate replace to="/" />} />
-        {/* <Route path="/register" element={<Registration />} />
-        <Route path="/login" element={<AuthForm />} /> */}
-      </Routes>
-      ;
+            <Route path="*" element={<Navigate replace to="/" />} />
+          </Routes>
+        </>
+      )}
     </Container>
   );
 };
 export default App;
-
-// <AuthForm></AuthForm>
-// <Registration></Registration>
-// <ContactPage></ContactPage>
-// /----------------------
-// <Registration></Registration>
-// <AuthForm></AuthForm>
-// <h1>Phonebook</h1>
-// <ContactForm></ContactForm>
-// <h2>Contacts</h2>
-// {contactLength > 1 && <Filter></Filter>}
-// <ContactList></ContactList>

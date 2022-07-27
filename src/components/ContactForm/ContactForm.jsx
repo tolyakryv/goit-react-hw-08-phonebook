@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import s from './ContactForm.module.css';
-// import { useDispatch, useSelector } from 'react-redux';
+
 import {
   useAddContactsMutation,
   useGetAllContactsQuery,
@@ -9,10 +9,10 @@ import {
 // import actions from 'redux/contacts-action';
 export default function ContactForm() {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const { data } = useGetAllContactsQuery();
   const [addContacts] = useAddContactsMutation();
-  // const dispatch = useDispatPhone
+
   const onSubmitForm = e => {
     e.preventDefault();
     if (
@@ -21,9 +21,9 @@ export default function ContactForm() {
       alert(`${name} is already in contacts`);
       return;
     }
-    addContacts({ name, phone });
+    addContacts({ name, number });
     setName('');
-    setPhone('');
+    setNumber('');
   };
   const changeInput = e => {
     switch (e.target.name) {
@@ -31,7 +31,7 @@ export default function ContactForm() {
         setName(e.target.value);
         break;
       case 'number':
-        setPhone(e.target.value);
+        setNumber(e.target.value);
         break;
       default:
         return;
@@ -60,7 +60,7 @@ export default function ContactForm() {
         Number
         <input
           className={s.input_contact}
-          value={phone}
+          value={number}
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -73,9 +73,6 @@ export default function ContactForm() {
         {' '}
         add contact
       </Button>
-      {/* <button className={s.btn_contact} type="submit">
-        add contact
-      </button> */}
     </form>
   );
 }

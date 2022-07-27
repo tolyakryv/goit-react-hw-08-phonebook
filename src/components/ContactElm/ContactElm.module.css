@@ -1,11 +1,13 @@
 .btn {
   cursor: pointer;
   padding: 1px 4px;
-  margin-left: 15px;
+
+  margin-right: 8px;
 }
 .btn:active {
   background-color: aqua;
 }
 .list {
   margin-top: 5px;
+  list-style: none;
 }

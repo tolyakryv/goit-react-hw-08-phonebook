@@ -1,28 +1,22 @@
 import Container from 'react-bootstrap/Container';
+import { useSelector } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import UserMenu from 'components/UserMenu/UserMenu';
+import s from './NavigationBar.css';
+import AuthSelector from 'redux/auth-selector';
 const NavigationBar = () => {
+  const isLoggedIn = useSelector(AuthSelector.getIsLoggedIn);
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar className={s.container} bg="dark" variant="dark">
         <Container>
-          {/* <Navbar.Brand href="#home">Phonebook</Navbar.Brand> */}
-          <Nav className="me-auto">
-            {/* <NavLink to="/">Phonebook</NavLink> */}
-            <NavLink to="/contacts">Contacts</NavLink>
-            {/* <NavLink to="/register" exact>
-              Registration
+          {isLoggedIn && (
+            <NavLink style={{ textDecoration: 'none' }} to="/contacts">
+              Contacts
             </NavLink>
-            <NavLink to="/login" exact>
-              Log In
-            </NavLink> */}
-            {/* <Nav.Link href="#reg">Registration</Nav.Link>
-            <Nav.Link href="#auth">Authentication</Nav.Link>
-            <Nav.Link href="#log_out">Log out</Nav.Link> */}
-            <UserMenu />
-          </Nav>
+          )}
+          <UserMenu />
         </Container>
       </Navbar>
       <Outlet />
