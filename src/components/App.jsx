@@ -9,9 +9,10 @@ import AuthSelector from 'redux/auth-selector';
 import operation from 'redux/auth-operation';
 import Container from './Container';
 import ContactPage from 'pages/ContactPage';
-import Registration from './Registration';
-import AuthForm from './AuthForm';
+
 import { Circles } from 'react-loader-spinner';
+import RegistrationPage from 'pages/RegistrationPage';
+import AutorisationPage from 'pages/AutorisationPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,8 +35,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<PublicRoute />}>
               <Route path="/" element={<Navigate replace to="/login" />} />
-              <Route path="/login" element={<AuthForm />} />
-              <Route path="/register" element={<Registration />} />
+              <Route path="/login" element={<AutorisationPage />} />
+              <Route path="/register" element={<RegistrationPage />} />
             </Route>
             {/* -------------------------- */}
             <Route path="/" element={<PrivateRoute />}>

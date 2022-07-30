@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import AuthOperation from 'redux/auth-operation';
-function AuthForm() {
+const AutorisationPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -51,6 +51,5 @@ function AuthForm() {
       </Button>
     </Form>
   );
-}
-
-export default AuthForm;
+};
+export default AutorisationPage;

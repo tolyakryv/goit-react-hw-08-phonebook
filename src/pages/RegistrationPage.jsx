@@ -1,9 +1,9 @@
+import AuthOperation from 'redux/auth-operation';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import AuthOperation from 'redux/auth-operation';
-function Registration() {
+const RegistrationPage = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -65,6 +65,5 @@ function Registration() {
       </Button>
     </Form>
   );
-}
-
-export default Registration;
+};
+export default RegistrationPage;
